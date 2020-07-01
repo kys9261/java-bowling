@@ -5,6 +5,8 @@ public class Validator {
     public static final int MIN_HIT_PIN = 0;
     public static final int MAX_HIT_PIN = 10;
 
+    private Validator(){}
+
     public static String checkPlayerName(String playerName) {
         playerName = playerName.toUpperCase();
         checkNameLength(playerName);

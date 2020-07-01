@@ -1,5 +1,6 @@
 package bowling.domain;
 
+import bowling.domain.score.ScoreSymbol;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,13 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("ScoreText 테스트")
-class ScoreTextTest {
+class ScoreSymbolTest {
 
     @DisplayName("점수를 기호로 변경되는지 확인")
     @Test
     void getScoreTextByScore() {
         for (int i = 0; i < 10; i++) {
-            assertThat(ScoreText.getScoreTextByScore(i)).isEqualTo(ScoreText.values()[i].getScoreText());
+            assertThat(ScoreSymbol.getScoreTextByScore(i)).isEqualTo(ScoreSymbol.values()[i].getScoreText());
         }
     }
 
@@ -23,7 +24,7 @@ class ScoreTextTest {
     @ParameterizedTest
     @ValueSource(ints = {-1,11})
     void ScoreTextException(int score) {
-        assertThatThrownBy(() -> ScoreText.getScoreTextByScore(score))
+        assertThatThrownBy(() -> ScoreSymbol.getScoreTextByScore(score))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("허용값을 벗어난 스코어입니다.");
     }

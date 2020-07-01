@@ -1,7 +1,7 @@
 package bowling.view;
 
 import bowling.Validator;
-import bowling.domain.Frame;
+import bowling.domain.frame.Frame;
 import bowling.utils.StringUtils;
 
 import java.util.List;

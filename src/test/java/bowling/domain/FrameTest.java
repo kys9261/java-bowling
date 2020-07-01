@@ -1,5 +1,8 @@
 package bowling.domain;
 
+import bowling.domain.frame.Frame;
+import bowling.domain.score.Score;
+import bowling.domain.score.ScoreSymbol;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Frame 테스트")
 class FrameTest {
@@ -34,10 +36,10 @@ class FrameTest {
     @Test
     void isAbleSecondTry_가능() {
         Frame frame = new Frame(1);
-        frame.firstTry(ScoreText.SIX.getScore());
+        frame.firstTry(ScoreSymbol.SIX.getScore());
         assertThat(frame.isAbleSecondTry()).isTrue();
 
-        frame.firstTry(ScoreText.STRIKE.getScore());
+        frame.firstTry(ScoreSymbol.STRIKE.getScore());
         assertThat(frame.isAbleSecondTry()).isFalse();
     }
 
@@ -45,10 +47,10 @@ class FrameTest {
     @Test
     void isStrike() {
         Frame frame = new Frame(1);
-        frame.firstTry(ScoreText.STRIKE.getScore());
+        frame.firstTry(ScoreSymbol.STRIKE.getScore());
         assertThat(frame.isStrike()).isTrue();
 
-        frame.firstTry(ScoreText.SIX.getScore());
+        frame.firstTry(ScoreSymbol.SIX.getScore());
         assertThat(frame.isStrike()).isFalse();
     }
 
@@ -56,11 +58,11 @@ class FrameTest {
     @Test
     void isSpare() {
         Frame frame = new Frame(1);
-        frame.firstTry(ScoreText.STRIKE.getScore());
+        frame.firstTry(ScoreSymbol.STRIKE.getScore());
         assertThat(frame.isSpare()).isFalse();
 
-        frame.firstTry(ScoreText.SIX.getScore());
-        frame.secondTry(ScoreText.FOUR.getScore());
+        frame.firstTry(ScoreSymbol.SIX.getScore());
+        frame.secondTry(ScoreSymbol.FOUR.getScore());
         assertThat(frame.isSpare()).isTrue();
     }
 
@@ -78,15 +80,15 @@ class FrameTest {
     @Test
     void testToString() {
         Frame frame = new Frame(5);
-        frame.firstTry(ScoreText.STRIKE.getScore());
+        frame.firstTry(ScoreSymbol.STRIKE.getScore());
         assertThat(frame.toString()).isEqualTo("X");
 
-        frame.firstTry(ScoreText.THREE.getScore());
-        frame.secondTry(ScoreText.SEVEN.getScore());
+        frame.firstTry(ScoreSymbol.THREE.getScore());
+        frame.secondTry(ScoreSymbol.SEVEN.getScore());
         assertThat(frame.toString()).isEqualTo("3|/");
 
-        frame.firstTry(ScoreText.GUTTER.getScore());
-        frame.secondTry(ScoreText.NINE.getScore());
+        frame.firstTry(ScoreSymbol.GUTTER.getScore());
+        frame.secondTry(ScoreSymbol.NINE.getScore());
         assertThat(frame.toString()).isEqualTo("-|9");
     }
 }

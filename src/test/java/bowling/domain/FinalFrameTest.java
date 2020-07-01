@@ -1,10 +1,11 @@
 package bowling.domain;
 
+import bowling.domain.frame.FinalFrame;
+import bowling.domain.score.ScoreSymbol;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("FinalFrame 테스트")
 class FinalFrameTest {
@@ -32,7 +33,7 @@ class FinalFrameTest {
     @Test
     void isAbleBonusTry1() {
         FinalFrame finalFrame = new FinalFrame(FINAL_FRAME_NUMBER);
-        finalFrame.firstTry(ScoreText.STRIKE.getScore());
+        finalFrame.firstTry(ScoreSymbol.STRIKE.getScore());
         assertThat(finalFrame.isAbleBonusTry()).isTrue();
     }
 
@@ -40,8 +41,8 @@ class FinalFrameTest {
     @Test
     void isAbleBonusTry2() {
         FinalFrame finalFrame = new FinalFrame(FINAL_FRAME_NUMBER);
-        finalFrame.firstTry(ScoreText.FOUR.getScore());
-        finalFrame.secondTry(ScoreText.SIX.getScore());
+        finalFrame.firstTry(ScoreSymbol.FOUR.getScore());
+        finalFrame.secondTry(ScoreSymbol.SIX.getScore());
 
         assertThat(finalFrame.isAbleBonusTry()).isTrue();
     }
@@ -50,9 +51,9 @@ class FinalFrameTest {
     @Test
     void testToString() {
         FinalFrame finalFrame = new FinalFrame(FINAL_FRAME_NUMBER);
-        finalFrame.firstTry(ScoreText.FOUR.getScore());
-        finalFrame.secondTry(ScoreText.SIX.getScore());
-        finalFrame.bonusTry(ScoreText.STRIKE.getScore());
+        finalFrame.firstTry(ScoreSymbol.FOUR.getScore());
+        finalFrame.secondTry(ScoreSymbol.SIX.getScore());
+        finalFrame.bonusTry(ScoreSymbol.STRIKE.getScore());
 
         assertThat(finalFrame.toString()).isEqualTo("4|/|X");
     }
